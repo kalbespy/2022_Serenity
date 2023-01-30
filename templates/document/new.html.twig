@@ -1,0 +1,12 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}Ajouter document
+{% endblock %}
+
+{% block body %}
+	<h1 class="crud-title">Ajouter un nouveau document</h1>
+
+	{{ include('document/_form.html.twig') }}
+
+	<a class="btn btn-primary m-2" href="{{ path('app_document_index') }}">Retour à la liste</a>
+{% endblock %}

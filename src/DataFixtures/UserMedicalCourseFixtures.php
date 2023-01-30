@@ -83,6 +83,90 @@ class UserMedicalCourseFixtures extends Fixture implements DependentFixtureInter
             'user_id' => '3',
             'medical_course_id' => '6',
         ],
+        [
+            'user_id' => '5',
+            'medical_course_id' => '1',
+        ],
+        [
+            'user_id' => '5',
+            'medical_course_id' => '2',
+        ],
+        [
+            'user_id' => '5',
+            'medical_course_id' => '3',
+        ],
+        [
+            'user_id' => '5',
+            'medical_course_id' => '4',
+        ],
+        [
+            'user_id' => '5',
+            'medical_course_id' => '5',
+        ],
+        [
+            'user_id' => '5',
+            'medical_course_id' => '6',
+        ],
+        [
+            'user_id' => '6',
+            'medical_course_id' => '1',
+        ],
+        [
+            'user_id' => '6',
+            'medical_course_id' => '6',
+        ],
+        [
+            'user_id' => '6',
+            'medical_course_id' => '7',
+        ],
+        [
+            'user_id' => '6',
+            'medical_course_id' => '8',
+        ],
+        [
+            'user_id' => '6',
+            'medical_course_id' => '10',
+        ],
+        [
+            'user_id' => '6',
+            'medical_course_id' => '11',
+        ],
+        [
+            'user_id' => '8',
+            'medical_course_id' => '1',
+        ],
+        [
+            'user_id' => '8',
+            'medical_course_id' => '6',
+        ],
+        [
+            'user_id' => '8',
+            'medical_course_id' => '7',
+        ],
+        [
+            'user_id' => '8',
+            'medical_course_id' => '8',
+        ],
+        [
+            'user_id' => '8',
+            'medical_course_id' => '10',
+        ],
+        [
+            'user_id' => '8',
+            'medical_course_id' => '11',
+        ],
+        [
+            'user_id' => '7',
+            'medical_course_id' => '1',
+        ],
+        [
+            'user_id' => '7',
+            'medical_course_id' => '2',
+        ],
+        [
+            'user_id' => '7',
+            'medical_course_id' => '7',
+        ],
     ];
 
     public function load(ObjectManager $manager): void

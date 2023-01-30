@@ -1,0 +1,12 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}Ajouter utilisateur
+{% endblock %}
+
+{% block body %}
+	<h1 class="crud-title">Ajouter un nouvel utilisateur</h1>
+
+	{{ include('user/_form.html.twig') }}
+
+	<a class="btn btn-primary m-2" href="{{ path('app_user_index') }}">Retour à la liste</a>
+{% endblock %}

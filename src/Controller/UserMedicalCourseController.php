@@ -41,12 +41,10 @@ class UserMedicalCourseController extends AbstractController
 
         $userCourseRepository->save($userMedicalCourse, true);
 
-        $category = $categoryRepository->findOneBy(['title' => 'Préparer mon arrivée en toute sérénité']);
+        $isChecked = $userMedicalCourse->isIsChecked();
 
-        return $this->redirectToRoute(
-            'app_category_show',
-            ['title' => $category->getTitle()],
-            Response::HTTP_SEE_OTHER
-        );
+        return $this->json([
+            'isChecked' => $isChecked
+        ]);
     }
 }

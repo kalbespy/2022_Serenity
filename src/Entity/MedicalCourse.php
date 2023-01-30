@@ -104,6 +104,14 @@ class MedicalCourse
     }
 
     /**
+     * @return Collection<int, Secretariat>
+     */
+    public function getSecretariats(): Collection
+    {
+        return $this->secretariats;
+    }
+
+    /**
      * @return Collection<int, UserMedicalCourse>
      */
     public function getUserMedicalCourses(): Collection

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Welfare;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @extends ServiceEntityRepository<Welfare>
@@ -39,28 +40,44 @@ class WelfareRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Welfare[] Returns an array of Welfare objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('w')
-//            ->andWhere('w.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('w.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findWelfareByUserByDate(int $userId, string $today): array
+    {
+        $queryBuilder = $this->createQueryBuilder('w')
+            ->select('u.id, w.score, w.responseAt')
+            ->join('w.user', 'u')
+            ->where('w.user = :userId')
+            ->andWhere('w.responseAt = :responseAt')
+            ->setParameters([
+                'userId' => $userId,
+                'responseAt' => $today
+            ])
+            ->getQuery();
 
-//    public function findOneBySomeField($value): ?Welfare
-//    {
-//        return $this->createQueryBuilder('w')
-//            ->andWhere('w.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        return $queryBuilder->getResult();
+    }
+
+    //    /**
+    //     * @return Welfare[] Returns an array of Welfare objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('w')
+    //            ->andWhere('w.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('w.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Welfare
+    //    {
+    //        return $this->createQueryBuilder('w')
+    //            ->andWhere('w.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

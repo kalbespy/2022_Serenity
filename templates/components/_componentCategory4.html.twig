@@ -5,7 +5,7 @@
 	{% for userMedicalDiscipline in userMedicalDisciplines %}
 		<p class="professionalBox d-flex justify-content-between align-items-center">
 			<span>{{ userMedicalDiscipline.medicalDiscipline.name}}</span>
-			<a href="{{ path("app_medical_discipline_check" , { id: userMedicalDiscipline.medicalDiscipline.id }) }}">
+			<a class="checkRelativeButton" href="{{ path("app_medical_discipline_check" , { id: userMedicalDiscipline.medicalDiscipline.id }) }}">
 				<i class="bi {{ userMedicalDiscipline.isChecked ? 'bi-check-circle' : 'bi-circle'}}"></i>
 			</a>
 		</p>

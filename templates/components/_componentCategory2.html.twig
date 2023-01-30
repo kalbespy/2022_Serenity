@@ -7,10 +7,10 @@
 		{% for userDocument in userDocuments %}
 			<div class="card schema-card col-6 g-3">
 				<div class="background-check"></div>
-				<a href="{{ path("app_document_check" , { id: userDocument.document.id }) }}">
+				<a class="checkAbsoluteButton" href="{{ path("app_document_check" , { id: userDocument.document.id }) }}">
 					<i class="bi absolue-check {{ userDocument.isChecked ? ' absolue-check-circle  bi-check-circle' : ' absolue-circle  bi-circle'}}"></i>
+					<img class="card-img-top documentPicture" src="{{asset('build/images/' ~ userDocument.document.picture)}}" alt="Card image cap">
 				</a>
-				<img class="card-img-top documentPicture" src="{{asset('build/images/' ~ userDocument.document.picture)}}" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">{{ userDocument.document.title}}</h5>
 					<p class="card-text card-subtitle text-muted">

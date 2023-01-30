@@ -104,6 +104,14 @@ class Video
     }
 
     /**
+     * @return Collection<int, Secretariat>
+     */
+    public function getSecretariats(): Collection
+    {
+        return $this->secretariats;
+    }
+
+    /**
      * @return Collection<int, UserVideo>
      */
     public function getUserVideos(): Collection

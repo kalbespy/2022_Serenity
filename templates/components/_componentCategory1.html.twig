@@ -1,87 +1,85 @@
 {% include "/components/_progressbar_category1.html.twig" %}
 
 <h2 class="my-4 mx-4">Schémas et documentations</h2>
+
 <section class="d-flex justify-content-center p-0">
 	<div class="row mx-4">
+
 		{% for userSchema in userSchemas %}
 
-			<div type="button" {% if loop.index0 < 4 %} class="card schema-card col-6 g-2" {% else %} 
-			class="card schema-card col-6 g-2 d-none" {% endif %} data-bs-target="#modal{{userSchema.schemaContent.id}}" data-bs-toggle="modal">
-			 <div class="background-check"></div> 
-			 <a href="{{ path("app_schema_content_check" , { id: userSchema.schemaContent.id }) }}"> 
-			 <i class="bi absolue-check {{ userSchema.isChecked ? ' absolue-check-circle bi-check-circle' : ' absolue-circle bi-circle'}}"></i>
-			 </a> 
-			 <img class="rounded-4 schema-picture h-100" src="{{asset('build/images/' ~ userSchema.schemaContent.picture)}}" alt="Card image cap"> 
-			 </div> 
-			 
-			 <div class="modal fade" id="modal{{userSchema.schemaContent.id}}" aria-hidden="true" aria-labelledby="modalLabel" tabindex="-1"> 
-			 <div class="modal-dialog modal-dialog-centered"> 
-			 <div class="modal-content"> 
-			 <div class="modal-header"> 
-			 <h1 class="modal-title fs-5" id="modalLabel"> 
-			 {{userSchema.schemaContent.title}}</h1> 
-			 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			 </div>
-
-			<div class="modal-body card schema-card col-12 g-3">
-			<div class="background-check"></div> 
-						<a href="{{ path("app_schema_content_check" , { id: userSchema.schemaContent.id }) }}"> 
-			 <i class="bi absolue-check {{ userSchema.isChecked ? ' absolue-check-circle bi-check-circle' : ' absolue-circle bi-circle'}}"></i>
-			 </a> 
-				<img class="rounded-4 schema-picture h-100" src="{{asset('build/images/' ~ userSchema.schemaContent.picture)}}" alt="Card image cap">
-			</div>
-
-			<div class="modal-footer">
-				<a data-bs-target="#modal{{userSchema.schemaContent.id - 1}}" data-bs-toggle="modal">
-					<img class="arrow-modal" src="{{asset('build/images/left-arrow.svg')}}" alt="left arrow">
-				</a>
-				<a data-bs-target="#modal{{userSchema.schemaContent.id + 1}}" data-bs-toggle="modal">
-					<img class="arrow-modal" src="{{asset('build/images/right-arrow.svg')}}" alt="right arrow">
+			<div type="button" {% if loop.index0 < 4 %} class="modalBtn card schema-card col-6 g-2" 
+			{% else %} class="card schema-card col-6 g-2 d-none" 
+			{% endif %} data-bs-target="#modal{{userSchema.schemaContent.id}}" data-bs-toggle="modal">
+				<div class="background-check"></div>
+				<a class="checkAbsoluteButton arrow{{userSchema.schemaContent.id}}" href="{{ path("app_schema_content_check" , { id: userSchema.schemaContent.id }) }}">
+					<i class="bi absolue-check {{ userSchema.isChecked ? ' absolue-check-circle bi-check-circle' : ' absolue-circle bi-circle'}}"></i>
+					<img class="rounded-4 schema-picture h-100" src="{{asset('build/images/' ~ userSchema.schemaContent.picture)}}" alt="Card image cap">
 				</a>
 			</div>
-		</div>
+
+			<div class="modal fade" id="modal{{userSchema.schemaContent.id}}" aria-hidden="true" aria-labelledby="modalLabel" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="modalLabel">
+							{{userSchema.schemaContent.title}}</h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+
+						<div class="modal-body card schema-card col-12 g-3">
+							<img class="rounded-4 schema-picture h-100" src="{{asset('build/images/' ~ userSchema.schemaContent.picture)}}" alt="Card image cap">
+						</div>
+
+						<div class="modal-footer">
+							<a id="arrow{{userSchema.schemaContent.id - 1}}" class="modalArrowLink" href="{{ path("app_schema_content_check" , { id: userSchema.schemaContent.id - 1}) }}" data-bs-target="#modal{{userSchema.schemaContent.id - 1}}" data-bs-toggle="modal">
+								<img class="arrow-modal" src="{{asset('build/images/left-arrow.svg')}}" alt="left arrow">
+							</a>
+							<a id="arrow{{userSchema.schemaContent.id + 1}}"class="modalArrowLink" href="{{ path("app_schema_content_check" , { id: userSchema.schemaContent.id + 1}) }}" data-bs-target="#modal{{userSchema.schemaContent.id + 1}}" data-bs-toggle="modal">
+								<img class="arrow-modal" src="{{asset('build/images/right-arrow.svg')}}" alt="right arrow">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		{% endfor %}
+
+		{% if category.schemaContents|length > 3 %}
+			<button class="btn my-2 border" id="show-more-schemas">Afficher plus</button>
+		{% endif %}
 	</div>
-</div>
-{% endfor %}
-{% if category.schemaContents|length > 3 %}
-<button class="btn my-2 border" id="show-more-schemas">Afficher plus</button>
-{% endif %}
-</div>
 </section>
 
 
 <h2 class="my-4 mx-4">Les vidéos du Dr. Noailles</h2>
+
 <section class="mx-4">
-{% for userVideo in userVideos %}
-<div class="card mb-3 border-bottom">
-<div class="row g-3">
-	<div class="col-sm-8 col-12 video-card">
-		<iframe src="{{userVideo.video.picture}}" class="w-100" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	</div>
-	<div class="col-sm-4 col-12">
-		<div class="card-body d-flex flex-column p-0">
-
-<div class="d-flex justify-content-between align-items-center">
-<div>
-			<p class="card-text card-title px-2">
-				<strong>{{userVideo.video.title}}</strong>
-				</p>
+	{% for userVideo in userVideos %}
+		<div class="card mb-3 border-bottom">
+			<div class="row g-3">
+				<div class="col-sm-8 col-12 video-card">
+					<iframe src="{{userVideo.video.picture}}" class="w-100" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				</div>
-				<div class="pe-3">
-			 <a href="{{ path("app_video_check" , { id: userVideo.video.id}) }}"> 
-			 <i class="bi {{ userVideo.isChecked ? 'bi-check-circle' : 'bi-circle'}}"></i>
-			 </a> 
-				
+				<div class="col-sm-4 col-12">
+					<div class="card-body d-flex flex-column p-0">
+						<div class="d-flex justify-content-between align-items-center">
+							<div>
+								<p class="card-text card-title px-2">
+									<strong>{{userVideo.video.title}}</strong>
+								</p>
+							</div>
+							<div class="pe-3">
+								<a class="checkRelativeButton" href="{{ path("app_video_check" , { id: userVideo.video.id}) }}">
+									<i class="bi {{ userVideo.isChecked ? 'bi-check-circle' : 'bi-circle'}}"></i>
+								</a>
+							</div>
+						</div>
+						<p class="card-text card-subtitle p-2">
+							<small class="text-muted">{{userVideo.video.duration}} minutes</small>
+						</p>
+					</div>
 				</div>
-
 			</div>
-			<p class="card-text card-subtitle p-2">
-				<small class="text-muted">{{userVideo.video.duration}}
-					minutes</small>
-			</p>
 		</div>
-	</div>
-</div>
-</div>
-{% endfor %}
+	{% endfor %}
 </section>

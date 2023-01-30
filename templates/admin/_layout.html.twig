@@ -1,0 +1,60 @@
+<div class="sidebar d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+	<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+		<span class="fs-4">Dashboard</span>
+	</a>
+	<hr>
+	<ul class="nav nav-pills flex-column mb-auto">
+		<li class="nav-item">
+			<a href="{{ path('app_admin')}}" class="nav-link {% if app.request.pathinfo starts with '/admin' %} active {% else %} link-dark {% endif %}" aria-current=" page">
+				<i class="bi bi-bell-fill m-2"></i>
+				Alertes du jour
+			</a>
+		</li>
+		<li>
+			<a href="{{ path('app_user_index')}}" class="nav-link {% if app.request.pathinfo starts with '/user/' %} active {% else %} link-dark {% endif %}">
+				<i class="bi bi-people-fill m-2"></i>Patients
+			</a>
+		</li>
+		<li>
+			<a href="{{ path('app_document_index')}}" class="nav-link {% if app.request.pathinfo starts with '/document/' %} active {% else %} link-dark {% endif %}">
+				<i class="bi bi-file-earmark m-2"></i>Documents
+			</a>
+		</li>
+		<li>
+			<a href="{{ path('app_checklist_index')}}" class="nav-link {% if app.request.pathinfo starts with '/checklist/' %} active {% else %} link-dark {% endif %}">
+				<i class="bi bi-list-check m-2"></i>Checklist
+			</a>
+		</li>
+		<li>
+			<a href="{{ path('app_medical_discipline_index')}}" class="nav-link {% if app.request.pathinfo starts with '/medical/discipline/' %} active {% else %} link-dark {% endif %}">
+				<i class="bi bi-hospital m-2"></i>
+				Professionels de santé
+			</a>
+		</li>
+		<li>
+			<a href="{{ path('app_medical_course_index')}}" class="nav-link {% if app.request.pathinfo starts with '/medical/course/' %} active {% else %} link-dark {% endif %}">
+				<i class="bi bi-calendar2-check-fill m-2"></i>
+				Préparer l'arrivée
+			</a>
+		</li>
+		<li>
+			<a href="{{ path('app_schema_content_index')}}" class="nav-link {% if app.request.pathinfo starts with '/schema/content/' %} active {% else %} link-dark {% endif %}">
+				<i class="bi bi-diagram-3-fill m-2"></i>
+				Schémas
+			</a>
+		</li>
+		<li>
+			<a href="{{ path('app_video_index')}}" class="nav-link {% if app.request.pathinfo starts with '/video/' %} active {% else %} link-dark {% endif %}">
+				<i class="bi bi-film m-2"></i>
+				Vidéos
+			</a>
+		</li>
+	</ul>
+	<hr>
+	<div>
+		<a href="{{ path("app_logout") }}" class="d-flex align-items-center link-dark text-decoration-none justify-content-between" id="dropdownUser2">
+			<img src="{{asset('build/images/exit.svg')}}">
+			<strong>Déconnexion</strong>
+		</a>
+	</div>
+</div>

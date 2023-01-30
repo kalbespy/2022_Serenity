@@ -2,13 +2,13 @@
 
 <div class="my-4 mx-4">
 	<p>Préparons nous à vivre la journée de l’intervention une première fois, histoire d’être en toute sérénité le jour J :</p>
-	{% for userMedicalCourse in userMedicalCourses %}
+	{% for userMedicalCourse in userMedicalCourses|sort ((a, b) => a.medicalCourse.step <=> b.medicalCourse.step) %}
 		<p class="step my-4 d-flex justify-content-between align-items-center">
 			Étape
 			{{userMedicalCourse.medicalCourse.step}}
 			:
 			{{userMedicalCourse.medicalCourse.title}}
-			<a href="{{ path("app_medicalCourse_check" , { id: userMedicalCourse.medicalCourse.id }) }}">
+			<a class="checkRelativeButton" href="{{ path("app_medicalCourse_check" , { id: userMedicalCourse.medicalCourse.id }) }}">
 				<i class="bi {{ userMedicalCourse.isChecked ? 'bi-check-circle' : 'bi-circle'}}"></i>
 			</a>
 		</p>

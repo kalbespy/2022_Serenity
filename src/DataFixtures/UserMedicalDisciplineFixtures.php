@@ -51,6 +51,54 @@ class UserMedicalDisciplineFixtures extends Fixture implements DependentFixtureI
             'user_id' => '3',
             'medical_discipline_id' => '5',
         ],
+        [
+            'user_id' => '5',
+            'medical_discipline_id' => '2',
+        ],
+        [
+            'user_id' => '5',
+            'medical_discipline_id' => '3',
+        ],
+        [
+            'user_id' => '5',
+            'medical_discipline_id' => '5',
+        ],
+        [
+            'user_id' => '6',
+            'medical_discipline_id' => '2',
+        ],
+        [
+            'user_id' => '6',
+            'medical_discipline_id' => '3',
+        ],
+        [
+            'user_id' => '6',
+            'medical_discipline_id' => '4',
+        ],
+        [
+            'user_id' => '7',
+            'medical_discipline_id' => '2',
+        ],
+        [
+            'user_id' => '7',
+            'medical_discipline_id' => '3',
+        ],
+        [
+            'user_id' => '7',
+            'medical_discipline_id' => '6',
+        ],
+        [
+            'user_id' => '8',
+            'medical_discipline_id' => '2',
+        ],
+        [
+            'user_id' => '8',
+            'medical_discipline_id' => '3',
+        ],
+        [
+            'user_id' => '8',
+            'medical_discipline_id' => '4',
+        ],
     ];
 
     public function load(ObjectManager $manager): void

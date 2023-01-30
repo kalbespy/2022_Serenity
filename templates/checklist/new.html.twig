@@ -1,0 +1,12 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}Ajouter élément checklist
+{% endblock %}
+
+{% block body %}
+	<h1 class="crud-title">Ajouter un élément à la checklist</h1>
+
+	{{ include('checklist/_form.html.twig') }}
+
+	<a class="btn btn-primary m-2" href="{{ path('app_checklist_index') }}">Retour à la liste</a>
+{% endblock %}

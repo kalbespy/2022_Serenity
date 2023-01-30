@@ -24,7 +24,6 @@ class UserDocumentController extends AbstractController
     public function checkDocument(
         Document $document,
         UserDocumentRepository $userDocRepository,
-        CategoryRepository $categoryRepository
     ): Response {
         /** @var \App\Entity\User */
         $user = $this->getUser();
@@ -43,12 +42,10 @@ class UserDocumentController extends AbstractController
 
         $userDocRepository->save($userDocument, true);
 
-        $category = $categoryRepository->findOneBy(['title' => 'Finir les démarches administratives']);
+        $isChecked = $userDocument->isIsChecked();
 
-        return $this->redirectToRoute(
-            'app_category_show',
-            ['title' => $category->getTitle()],
-            Response::HTTP_SEE_OTHER
-        );
+        return $this->json([
+            'isChecked' => $isChecked
+        ]);
     }
 }

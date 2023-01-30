@@ -1,0 +1,12 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}Ajouter étape hospitalisation
+{% endblock %}
+
+{% block body %}
+	<h1 class="crud-title">Ajouter une étape de l'hospitalisation</h1>
+
+	{{ include('medical_course/_form.html.twig') }}
+
+	<a class="btn btn-primary m-2" href="{{ path('app_medical_course_index') }}">Retour à la liste</a>
+{% endblock %}

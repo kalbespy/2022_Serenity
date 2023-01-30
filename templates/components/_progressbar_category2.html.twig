@@ -7,11 +7,22 @@
 	<div class="progress rounded-4 my-3 mx-4 category2-progress position-relative z-0">
 		<div class="progress-bar rounded-4-start category2-progressbar z-2" style="width: {{percent}}%" role="progressbar" aria-label="Example with label" aria-valuenow="4" aria-valuemin="0" aria-valuemax="10">
 			<div class="progress-title-cat px-3 position-absolute z-3 d-flex justify-content-between w-100">
-				<div>
-					Finir les démarches administratives
+				<div class="w-100">
+					<span class="titlebar d-flex justify-content-start {% if total == isChecked %}text-decoration-line-through{% endif %}">
+						Finir les démarches administratives</span>
+
+					<div class="titlefinish d-flex justify-content-end mt-4 me-2{% if total != isChecked %} d-none {% endif %}">
+						Terminé
+					</div>
+
 				</div>
 				<div>
-					{{isChecked}}/{{total}}
+					<div class="numberChecked">
+						{{isChecked}}/{{total}}
+					</div>
+					<span class="finishbutton{% if total != isChecked %} d-none {% endif %}">
+						<i class="bi-check2-circle d-flex mt-4"></i>
+					</span>
 				</div>
 			</div>
 		</div>

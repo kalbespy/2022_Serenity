@@ -42,12 +42,10 @@ class UserMedicalDisciplineController extends AbstractController
 
         $userMedDisRepository->save($userMedDiscipline, true);
 
-        $category = $categoryRepository->findOneBy(['title' => 'Anticiper ma sortie']);
+        $isChecked = $userMedDiscipline->isIsChecked();
 
-        return $this->redirectToRoute(
-            'app_category_show',
-            ['title' => $category->getTitle()],
-            Response::HTTP_SEE_OTHER
-        );
+        return $this->json([
+            'isChecked' => $isChecked
+        ]);
     }
 }

@@ -1,0 +1,142 @@
+{% set totalchecked = document|length + checklist|length + medicalD|length + medicalC|length + schema|length + video|length %}
+
+{% set percent = ((totalchecked / totalElementsByUser)*100)|round(0) %}
+
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}
+	Résumé Patient
+{% endblock %}
+
+{% block body %}
+	<div class="m-3">
+		<div class="d-flex flex-row">
+			<div>
+				<h1>Informations patient</h1>
+				<div class="d-flex flex-row mt-4 mb-2">
+					<div class="patient-picture me-3">
+						<img class="rounded img-thumbnail picture-profile-patient" src="{{asset('build/images/' ~ user.picture)}}">
+					</div>
+					<div class="patientInfo">
+						<table class="table">
+							<tbody>
+								<tr class="table-light">
+									<th colspan="2">
+										<h3>{{ user.firstname ~ " " ~ user.lastname}}
+										</h3>
+									</th>
+								</tr>
+								<tr>
+									<th>Patient #:
+									</th>
+									<td>{{ user.id }}</td>
+								</tr>
+								<tr>
+									<th>Email:
+									</th>
+									<td>{{ user.email }}</td>
+								</tr>
+								<tr>
+									<th>Téléphone</th>
+									<td>{{ user.phonenumber }}</td>
+								</tr>
+								<tr>
+									<th>Secrétariat</th>
+									<td>{{ user.secretariat.name |capitalize }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="m-auto p-5">
+				<img class="logo-image-admin" src="{{asset('build/images/logo-title.svg')}}" alt="logo">
+				<div class="mb-5">
+					<div class="progress progress-index position-relative z-0">
+						<div class="progress-bar rounded-5-start progbar progressbar-index z-2" style="width: {{percent}}%" role=" progressbar" aria-label=" example with label" aria-valuenow=" 4" aria-valuemin=" 0" aria-valuemax=" 100">
+							<div class="progress-title p-2 position-absolute z-3 d-flex justify-content-between w-100 p-3">
+								{% if totalElementsByUser == totalchecked %}
+									<div class="d-flex align-items-center">
+										<div class="d-flex align-items-center">
+											<i class=" finishbutton bi-check2-circle me-2"></i>
+											Le patient est prêt !
+										</div>
+									</div>
+								{% else %}
+									<div>Préparation du patient</div>
+								{% endif %}
+								<div class="d-flex align-items-center">
+									{{percent}}%
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<h1 class="mt-5">Historique - Suivi du bien-être du patient</h1>
+
+			<table class="table table-sm table-hover mt-4 me-4 align-middle">
+				<thead>
+					<tr>
+						<th class="text-center">#</th>
+						<th class="text-center">Date de réponse</th>
+						<th class="text-center" colspan="2">Etat du patient</th>
+						<th class="text-center">Score</th>
+						<th class="text-center">Patient rappelé</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for userWelfare in userWelfares |sort ((a, b) => b.responseAt <=> a.responseAt)%}
+						<tr class="{% if userWelfare.score == 1 %} table-success {% elseif userWelfare.score == 2 %} table-info {% elseif userWelfare.score == 3 %} table-warning {% else %} table-danger {% endif %}">
+							<td class="text-center">{{userWelfare.id}}</td>
+							<td class="text-center">{{userWelfare.responseAt | format_date(pattern='dd/MM/yyyy', locale='fr') }}
+							</td>
+							<td class="text-end">
+								{% if userWelfare.score == 1 %}
+									<img class="img-fluid emojidashboard" src="{{asset('build/images/WelfareForm-happy.svg')}}" alt="home">
+								{% elseif userWelfare.score == 2 %}
+									<img class="img-fluid emojidashboard" src="{{asset('build/images/WelfareForm-tired.svg')}}" alt="home">
+								{% elseif userWelfare.score == 3 %}
+									<img class="img-fluid emojidashboard" src="{{asset('build/images/WelfareForm-stress.svg')}}" alt="home">
+								{% else %}
+									<img class="img-fluid emojidashboard" src="{{asset('build/images/WelfareForm-unhappy.svg')}}" alt="home">
+								{% endif %}
+							</td>
+							<td class="text-start">
+								{% if userWelfare.score == 1 %}
+									- Bien
+								{% elseif userWelfare.score == 2 %}
+									- Stressé.e
+								{% elseif userWelfare.score == 3 %}
+									- Fatigué.e
+								{% else %}
+									- Mal
+								{% endif %}
+							</td>
+							<td class="text-center">{{userWelfare.score}}</td>
+							<td class="text-center">
+								{% if userWelfare.score != 1 %}
+									{% if userWelfare.isCallBack == false %}
+										Non
+									{% else %}
+										Oui
+										<i class="bi bi-check2-circle"></i>
+									</a>
+								{% endif %}
+							{% endif %}
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="text-center">
+		<a class="btn btn-primary" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+		{{ include('user/_delete_form.html.twig') }}
+	</div>
+{% endblock %}

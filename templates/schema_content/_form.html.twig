@@ -1,0 +1,7 @@
+{% extends "crud_form_layout.html.twig" %}
+{% block form %}
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<button class="btn btn-success rounded-pill jusitify-content-center crud-button">{{ button_label|default('Enregistrer') }}</button>
+	{{ form_end(form) }}
+{% endblock %}

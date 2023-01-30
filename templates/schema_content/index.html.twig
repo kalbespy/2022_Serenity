@@ -1,0 +1,44 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}Les schémas
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center m-3">Les schémas</h1>
+	<div class="d-flex justify-content-center m-3">
+		<a class="btn btn-primary m-2" href="{{ path('app_schema_content_new') }}">Ajouter un schéma</a>
+	</div>
+	<table class="table w-75">
+		<thead>
+			<tr>
+				<th>Titre</th>
+				<th class="text-center">Image</th>
+				<th>Secretariat(s)</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for schema_content in schema_contents %}
+				<tr>
+					<td>
+						{{schema_content.title}}</td>
+					<td class="text-center"><img class="rounded w-50" src="{{asset('build/images/' ~ schema_content.picture)}}"></td>
+					<td class="flex-column">
+						{% for secretariat in schema_content.secretariats %}
+							<p>
+								{{ secretariat.name|capitalize }}</p>
+						{% endfor %}
+					</td>
+					<td>
+						<a class="btn btn-primary" href="{{ path('app_schema_content_edit', {'id': schema_content.id}) }}">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}Ajouter schéma
+{% endblock %}
+
+{% block body %}
+	<h1 class="crud-title">Ajouter un schéma</h1>
+
+	{{ include('schema_content/_form.html.twig') }}
+
+	<a class="btn btn-primary m-2" href="{{ path('app_schema_content_index') }}">Retour à la liste</a>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+{% block title %}Les documents
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center m-3">Les documents</h1>
+	<div class="d-flex justify-content-center m-3">
+		<a class="btn btn-primary m-2" href="{{ path('app_document_new') }}">Nouveau document</a>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Titre</th>
+				<th class="text-center">Image</th>
+				<th class="text-center">Temps de lecture</th>
+				<th>Secretariat(s)</th>
+
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for document in documents %}
+				<tr>
+					<td>{{ document.title }}</td>
+					<td class="text-center"><img class="rounded w-50" src="{{asset('build/images/' ~ document.picture)}}"></td>
+					<td class="text-center">{{ document.readTime }}'</td>
+					<td class="flex-column">
+						{% for secretariat in document.secretariats %}
+							<p>
+								{{ secretariat.name|capitalize }}</p>
+						{% endfor %}
+					</td>
+					<td>
+						<a class="btn btn-primary" href="{{ path('app_document_edit', {'id': document.id}) }}">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

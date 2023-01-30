@@ -48,6 +48,55 @@ class UserVideoFixtures extends Fixture implements DependentFixtureInterface
             'user_id' => '3',
             'video_id' => '3',
         ],
+        [
+            'user_id' => '5',
+            'video_id' => '1',
+        ],
+        [
+            'user_id' => '5',
+            'video_id' => '2',
+        ],
+        [
+            'user_id' => '5',
+            'video_id' => '3',
+        ],
+        [
+            'user_id' => '6',
+            'video_id' => '7',
+        ],
+        [
+            'user_id' => '6',
+            'video_id' => '8',
+        ],
+        [
+            'user_id' => '6',
+            'video_id' => '9',
+        ],
+        [
+            'user_id' => '7',
+            'video_id' => '4',
+        ],
+        [
+            'user_id' => '7',
+            'video_id' => '5',
+        ],
+        [
+            'user_id' => '7',
+            'video_id' => '6',
+        ],
+        [
+            'user_id' => '8',
+            'video_id' => '7',
+        ],
+        [
+            'user_id' => '8',
+            'video_id' => '8',
+        ],
+        [
+            'user_id' => '8',
+            'video_id' => '9',
+        ],
+
     ];
 
     public function load(ObjectManager $manager): void

@@ -5,21 +5,15 @@
 
 {% block body %}
 	<body class="connexionPageBody">
-		<div class="background-home bg-white">
-			<div class="reassuringDoctor d-flex align-items-end">
-				<div class="text-center w-100">
-					<h1 class="fw-bold mb-0 title-serenity py-2">Bienvenue sur Serenity</h1>
-				</div>
-			</div>
+        <div class="d-flex align-items-end">
+            <img class="doctor-image" src="{{asset('build/images/reassuringDoctor.png')}}" alt="doctor">
+            <img class="logo-image" src="{{asset('build/images/logo-title.svg')}}" alt="logo">
+        </div>
+
+        <div class="connexionPageForm p-5 pt-2 pb-2">
+            <p class="fw-bold fs-4 text-white mt-4 mb-5 text-center">L'application qui vous accompagne tout au long de votre parcours d'hospitalisation.</p>
+            <a class="btn btn-light registrationBtn p-3 col-8 mx-5 mb-1" href="{{ path("app_login") }}" role="button">Se connecter</a>
 		</div>
 
-		<div class="connexionPageBottom d-flex p-2 align-items-center flex-column my-4 mx-3">
-			<div class=" w-60">
-				<h3 class="fw-bold text-white">L'application qui vous accompagne tout au long de votre parcours d'hospitalisation.
-				</h3>
-			</div>
-
-			<a class="btn btn-light registrationBtn p-3 mt-5 w-40 fs-4" href="{{ path("app_login") }}" role="button">Se connecter</a>
-		</div>
 	</body>
-</div>{% endblock %}
+{% endblock %}

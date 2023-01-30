@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Questionnaire{% endblock %}
+
+{% block body %}
+        <main class= "container container-welfare-form">
+
+            <div class = "row">
+                <div class="col">
+                    <a class= "a-path" href="{{ path("app_category_index") }}"><p class = "p-title text-end">Passer</p></a>
+                </div>
+            </div>
+
+<div class="row">
+    <div class="col">
+            <p class="p-wellness text-center">BIEN-ÊTRE</p>
+            <h1 class="h1-wellness text-center">Comment vous sentez-vous aujourd'hui ?</h1>
+            <p class="p-feeling text-center">Je me sens :</p>
+    </div>
+</div>
+            <div class="smiley-mood">
+                <img class="unhappy" src="{{asset('build/images/WelfareForm-unhappy.svg')}}" alt="right arrow">
+                <img class="stress-mood" src="{{asset('build/images/WelfareForm-stress.svg')}}" alt="right arrow">
+                <img class="tired-mood" src="{{asset('build/images/WelfareForm-tired.svg')}}" alt="right arrow">
+                <img class="happy" src="{{asset('build/images/WelfareForm-happy.svg')}}" alt="right arrow">
+            </div>
+
+                        {{ form_start(form) }}
+                        {{ form_row(form.score) }}
+
+                <div class="row">
+                    <div class="col align-content-center d-flex justify-content-center">
+                        <button class="btn btn-primary btn-welfare-form">{{ button_label|default('Valider') }}</button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+
+        </main>
+{% endblock %}

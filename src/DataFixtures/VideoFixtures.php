@@ -13,7 +13,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         [
             'title' => "L'ACCOUCHEMENT",
             'picture' => 'https://www.youtube.com/embed/NM2KJA8uSuc',
-            'duration' => 3,
+            'duration' => 6,
             'category' => 'Comprendre mon opération',
             'secretariat' => ['secretariat_maternité']
 
@@ -21,7 +21,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         [
             'title' => "ACCOUCHER SANS PÉRIDURALE",
             'picture' => 'https://www.youtube.com/embed/fe7S_-QoI6o',
-            'duration' => 10,
+            'duration' => 18,
             'category' => 'Comprendre mon opération',
             'secretariat' => ['secretariat_maternité']
 
@@ -29,7 +29,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         [
             'title' => "LES SUITES DE COUCHES",
             'picture' => 'https://www.youtube.com/embed/rroZ9Tn4Oa8',
-            'duration' => 8,
+            'duration' => 26,
             'category' => 'Comprendre mon opération',
             'secretariat' => ['secretariat_maternité']
 
@@ -44,35 +44,35 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         [
             'title' => 'CHIRURGIE ORTHOPÉDIQUE ÉPAULE',
             'picture' => 'https://www.youtube.com/embed/g0ANw4IRrlU',
-            'duration' => 7,
+            'duration' => 3,
             'category' => 'Comprendre mon opération',
             'secretariat' => ['secretariat_orthopédie']
         ],
         [
             'title' => 'RÉPARATION D\'UNE RUPTURE DE LA COIFFE',
             'picture' => 'https://www.youtube.com/embed/RuPP_ilhndY',
-            'duration' => 12,
+            'duration' => 3,
             'category' => 'Comprendre mon opération',
             'secretariat' => ['secretariat_orthopédie']
         ],
         [
             'title' => 'LA NEUROCHIRURGIE',
             'picture' => 'https://www.youtube.com/embed/hXFBWXuZIdo',
-            'duration' => 5,
+            'duration' => 3,
             'category' => 'Comprendre mon opération',
             'secretariat' => ['secretariat_neurologie']
         ],
         [
             'title' => 'SCLÉROSE EN PLAQUES',
             'picture' => 'https://www.youtube.com/embed/muIoiyebzBA',
-            'duration' => 14,
+            'duration' => 7,
             'category' => 'Comprendre mon opération',
             'secretariat' => ['secretariat_neurologie']
         ],
         [
             'title' => 'DÉPRESSION ET PERTES DE NEURONES',
             'picture' => 'https://www.youtube.com/embed/vCavRhuxlTg',
-            'duration' => 8,
+            'duration' => 6,
             'category' => 'Comprendre mon opération',
             'secretariat' => ['secretariat_neurologie']
         ]

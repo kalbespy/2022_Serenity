@@ -1,0 +1,12 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}Ajouter Profession
+{% endblock %}
+
+{% block body %}
+	<h1 class="crud-title">Ajouter une profession de santé</h1>
+
+	{{ include('medical_discipline/_form.html.twig') }}
+
+	<a class="btn btn-primary m-2" href="{{ path('app_medical_discipline_index') }}">Retour à la liste</a>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}La check-list
+{% endblock %}
+
+{% block body %}
+	<div>
+		<h1 class="text-center m-3">La check-list</h1>
+		<div class="d-flex justify-content-center m-3">
+			<a class="btn btn-primary m-2" href="{{ path('app_checklist_new') }}">Créer un nouveau document</a>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nom du document</th>
+					<th>Description</th>
+					<th>Secretariat(s)</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for checklist in checklists %}
+					<tr>
+						<td>{{ checklist.name }}</td>
+						<td>{{ checklist.description }}</td>
+						<td class="flex-column">
+							{% for secretariat in checklist.secretariats %}
+								<p>
+									{{ secretariat.name|capitalize }}</p>
+							{% endfor %}
+						</td>
+
+						<td>
+							<a class="btn btn-primary" href="{{ path('app_checklist_edit', {'id': checklist.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endblock %}

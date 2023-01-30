@@ -73,6 +73,66 @@ class UserDocumentFixtures extends Fixture implements DependentFixtureInterface
             'user_id' => '3',
             'document_id' => '5',
         ],
+        [
+            'user_id' => '5',
+            'document_id' => '1',
+        ],
+        [
+            'user_id' => '5',
+            'document_id' => '2',
+        ],
+        [
+            'user_id' => '5',
+            'document_id' => '3',
+        ],
+        [
+            'user_id' => '5',
+            'document_id' => '4',
+        ],
+        [
+            'user_id' => '6',
+            'document_id' => '5',
+        ],
+        [
+            'user_id' => '6',
+            'document_id' => '1',
+        ],
+        [
+            'user_id' => '6',
+            'document_id' => '2',
+        ],
+        [
+            'user_id' => '6',
+            'document_id' => '3',
+        ],
+        [
+            'user_id' => '7',
+            'document_id' => '1',
+        ],
+        [
+            'user_id' => '7',
+            'document_id' => '2',
+        ],
+        [
+            'user_id' => '7',
+            'document_id' => '3',
+        ],
+        [
+            'user_id' => '8',
+            'document_id' => '4',
+        ],
+        [
+            'user_id' => '8',
+            'document_id' => '1',
+        ],
+        [
+            'user_id' => '8',
+            'document_id' => '2',
+        ],
+        [
+            'user_id' => '8',
+            'document_id' => '3',
+        ],
     ];
 
     public function load(ObjectManager $manager): void

@@ -1,0 +1,9 @@
+welcome: Bienvenue
+username: "%username%"
+account:
+    sign_in: "Se connecter"
+    register: "Créer un compte"
+    logout: Déconnexion
+    password: "Mot de passe"
+    forgotten: "Mot de passe oublié"
+data-browse: "Parcourir"

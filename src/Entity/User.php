@@ -2,17 +2,26 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
+use DateTimeImmutable;
+use Serializable;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+#[Vich\Uploadable]
+#[ORM\HasLifecycleCallbacks]
+class User implements UserInterface, PasswordAuthenticatedUserInterface, Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -43,6 +52,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
+    #[Vich\UploadableField(mapping: 'profile_picture', fileNameProperty: 'picture')]
+    #[Assert\File(
+        maxSize: '1M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
+    private ?File $profilePicture = null;
+
     #[ORM\Column]
     private ?string $phonenumber = null;
 
@@ -68,7 +84,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserMedDiscipline::class)]
     private Collection $userMedDisciplines;
 
-    #[ORM\ManyToMany(targetEntity: Welfare::class, mappedBy: 'user')]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $isUploadedPicture = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Welfare::class)]
     private Collection $welfares;
 
     public function __construct()
@@ -403,6 +425,78 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function setProfilePicture(File $image = null): User
+    {
+        $this->profilePicture = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+            $this->isUploadedPicture = true;
+        }
+        return $this;
+    }
+
+    public function getProfilePicture(): ?File
+    {
+        return $this->profilePicture;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    #[ORM\PrePersist]
+    public function setUpdatedAt(): self
+    {
+        $this->updatedAt = new DateTime();
+
+        return $this;
+    }
+
+    public function isIsUploadedPicture(): ?bool
+    {
+        return $this->isUploadedPicture;
+    }
+
+    public function setIsUploadedPicture(?bool $isUploadedPicture): self
+    {
+        $this->isUploadedPicture = $isUploadedPicture;
+
+        return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize([
+            'id' => $this->getId(),
+            'password' => $this->getPassword(),
+            'email' => $this->getEmail(),
+            'userLastname' => $this->getLastname(),
+            'userFirstname' => $this->getFirstname(),
+            'roles' => $this->getRoles(),
+        ]);
+    }
+
+    public function unserialize($data)
+    {
+        $unserialized = unserialize($data);
+
+        $this
+            ->setId($unserialized['id'])
+            ->setPassword($unserialized['password'])
+            ->setEmail($unserialized['email'])
+            ->setLastname($unserialized['userLastname'])
+            ->setFirstname($unserialized['userFirstname'])
+            ->setRoles($unserialized['roles']);
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Welfare>
      */
@@ -415,7 +509,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->welfares->contains($welfare)) {
             $this->welfares->add($welfare);
-            $welfare->addUser($this);
+            $welfare->setUser($this);
         }
 
         return $this;
@@ -424,7 +518,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeWelfare(Welfare $welfare): self
     {
         if ($this->welfares->removeElement($welfare)) {
-            $welfare->removeUser($this);
+            // set the owning side to null (unless already changed)
+            if ($welfare->getUser() === $this) {
+                $welfare->setUser(null);
+            }
         }
 
         return $this;

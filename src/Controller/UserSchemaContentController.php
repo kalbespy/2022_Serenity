@@ -41,12 +41,10 @@ class UserSchemaContentController extends AbstractController
 
         $userSchemaRepository->save($userSchemaContent, true);
 
-        $category = $categoryRepository->findOneBy(['title' => 'Comprendre mon opération']);
+        $isChecked = $userSchemaContent->isIsChecked();
 
-        return $this->redirectToRoute(
-            'app_category_show',
-            ['title' => $category->getTitle()],
-            Response::HTTP_SEE_OTHER
-        );
+        return $this->json([
+            'isChecked' => $isChecked
+        ]);
     }
 }

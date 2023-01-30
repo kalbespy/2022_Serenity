@@ -41,12 +41,10 @@ class UserChecklistController extends AbstractController
         }
         $userCheRepository->save($userChecklist, true);
 
-        $category = $categoryRepository->findOneBy(['title' => 'Ma check-list avant le départ à la clinique']);
+        $isChecked = $userChecklist->isIsChecked();
 
-        return $this->redirectToRoute(
-            'app_category_show',
-            ['title' => $category->getTitle()],
-            Response::HTTP_SEE_OTHER
-        );
+        return $this->json([
+            'isChecked' => $isChecked
+        ]);
     }
 }

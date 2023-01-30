@@ -1,0 +1,44 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}Préparer l'arrivée
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center m-3">Préparer l'arrivée</h1>
+	<div class="d-flex justify-content-center m-3">
+		<a class="btn btn-primary m-2" href="{{ path('app_medical_course_new') }}">Ajouter un step</a>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="text-center">Etape</th>
+				<th>Titre</th>
+				<th class="text-center">Image</th>
+				<th>Secretariat(s)</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for medical_course in medical_courses %}
+				<tr>
+					<td class="text-center">{{ medical_course.step }}</td>
+					<td>{{ medical_course.title }}</td>
+					<td class="text-center"><img class="rounded w-50" src="{{asset('build/images/' ~ medical_course.picture)}}"></td>
+					<td class="flex-column">
+						{% for secretariat in medical_course.secretariats %}
+							<p>{{ secretariat.name|capitalize }}</p>
+						{% endfor %}
+					</td>
+					<td>
+						<a class="btn btn-primary" href="{{ path('app_medical_course_edit', {'id': medical_course.id}) }}">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

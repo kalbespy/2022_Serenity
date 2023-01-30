@@ -1,0 +1,44 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+{% block title %}Les Vidéos
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center m-3">Les vidéos</h1>
+	<div class="d-flex justify-content-center m-3">
+		<a class="btn btn-primary m-2" href="{{ path('app_video_new') }}">Ajouter une nouvelle vidéo</a>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Titre</th>
+				<th>Lien de la vidéo</th>
+				<th>Durée</th>
+				<th>Secretariat(s)</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for video in videos %}
+				<tr>
+					<td>{{ video.title }}</td>
+					<td>{{ video.picture }}</td>
+					<td>{{ video.duration }}
+						min</td>
+					<td class="flex-column">
+						{% for secretariat in video.secretariats %}
+							<p>
+								{{ secretariat.name|capitalize }}</p>
+						{% endfor %}
+					</td>
+					<td>
+						<a class="btn btn-primary" href="{{ path('app_video_edit', {'id': video.id}) }}">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
