@@ -31,10 +31,10 @@
 						</div>
 
 						<div class="modal-footer">
-							<a id="arrow{{userSchema.schemaContent.id - 1}}" class="modalArrowLink" href="{{ path("app_schema_content_check" , { id: userSchema.schemaContent.id - 1}) }}" data-bs-target="#modal{{userSchema.schemaContent.id - 1}}" data-bs-toggle="modal">
+							<a id="arrow{{userSchema.schemaContent.id - 1}}" class="modalArrowLink" href="{{ path("app_schema_content_check_modal" , { id: userSchema.schemaContent.id - 1}) }}" data-bs-target="#modal{{userSchema.schemaContent.id - 1}}" data-bs-toggle="modal">
 								<img class="arrow-modal" src="{{asset('build/images/left-arrow.svg')}}" alt="left arrow">
 							</a>
-							<a id="arrow{{userSchema.schemaContent.id + 1}}"class="modalArrowLink" href="{{ path("app_schema_content_check" , { id: userSchema.schemaContent.id + 1}) }}" data-bs-target="#modal{{userSchema.schemaContent.id + 1}}" data-bs-toggle="modal">
+							<a id="arrow{{userSchema.schemaContent.id + 1}}"class="modalArrowLink" href="{{ path("app_schema_content_check_modal" , { id: userSchema.schemaContent.id + 1}) }}" data-bs-target="#modal{{userSchema.schemaContent.id + 1}}" data-bs-toggle="modal">
 								<img class="arrow-modal" src="{{asset('build/images/right-arrow.svg')}}" alt="right arrow">
 							</a>
 						</div>

@@ -4,14 +4,12 @@
 
 {% block body %}
 	<h1 class="text-center m-3">Les vidéos</h1>
-	<div class="d-flex justify-content-center m-3">
-		<a class="btn btn-primary m-2" href="{{ path('app_video_new') }}">Ajouter une nouvelle vidéo</a>
-	</div>
-	<table class="table">
+
+	<table class="table align-middle mt-5">
 		<thead>
 			<tr>
 				<th>Titre</th>
-				<th>Lien de la vidéo</th>
+				<th>Vidéo explicative</th>
 				<th>Durée</th>
 				<th>Secretariat(s)</th>
 				<th></th>
@@ -21,13 +19,12 @@
 			{% for video in videos %}
 				<tr>
 					<td>{{ video.title }}</td>
-					<td>{{ video.picture }}</td>
+					<td><iframe src="{{video.picture}}" class="w-100" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
 					<td>{{ video.duration }}
 						min</td>
 					<td class="flex-column">
 						{% for secretariat in video.secretariats %}
-							<p>
-								{{ secretariat.name|capitalize }}</p>
+							{{ secretariat.name|capitalize }}
 						{% endfor %}
 					</td>
 					<td>

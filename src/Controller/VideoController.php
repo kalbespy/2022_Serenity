@@ -24,30 +24,6 @@ class VideoController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_video_new', methods: ['GET', 'POST'])]
-    public function new(
-        Request $request,
-        VideoRepository $videoRepository,
-        CategoryRepository $categoryRepository
-    ): Response {
-        $video = new Video();
-        $video->setCategory($categoryRepository->findOneBy(['title' => 'Comprendre mon opération']));
-        $form = $this->createForm(VideoType::class, $video);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $url = $video->getPicture();
-            $video->setPicture(substr_replace($url, "embed/", 24, 8));
-            $videoRepository->save($video, true);
-
-            return $this->redirectToRoute('app_video_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('video/new.html.twig', [
-            'video' => $video,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{id}', name: 'app_video_show', methods: ['GET'])]
     public function show(Video $video): Response
     {
@@ -64,7 +40,11 @@ class VideoController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $url = $video->getPicture();
-            $video->setPicture(substr_replace($url, "embed/", 24, 8));
+            if (str_contains($url, "embed/")) {
+                $video->setPicture($url);
+            } else {
+                $video->setPicture(substr_replace($url, "embed/", 24, 8));
+            }
             $videoRepository->save($video, true);
 
             return $this->redirectToRoute('app_video_index', [], Response::HTTP_SEE_OTHER);
@@ -74,15 +54,5 @@ class VideoController extends AbstractController
             'video' => $video,
             'form' => $form,
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_video_delete', methods: ['POST'])]
-    public function delete(Request $request, Video $video, VideoRepository $videoRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $video->getId(), $request->request->get('_token'))) {
-            $videoRepository->remove($video, true);
-        }
-
-        return $this->redirectToRoute('app_video_index', [], Response::HTTP_SEE_OTHER);
     }
 }

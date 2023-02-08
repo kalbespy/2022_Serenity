@@ -5,10 +5,7 @@
 
 {% block body %}
 	<h1 class="text-center m-3">Les patients</h1>
-	<div class="d-flex justify-content-center m-3">
-		<a class="btn btn-primary m-2" href="{{ path('app_user_new') }}">Ajouter un patient</a>
-	</div>
-	<table class="table">
+	<table class="table align-middle mt-5">
 		<thead>
 			<tr>
 				<th>Nom</th>
@@ -16,22 +13,24 @@
 				<th>Email</th>
 				<th>Téléphone</th>
 				<th>Secretariat</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for user in users %}
-				<tr>
-					<td>{{ user.lastname }}</td>
-					<td>{{ user.firstname }}</td>
-					<td>{{ user.email }}</td>
-					<td>{{ user.phonenumber }}</td>
-					<td>
-						{{ user.secretariat.name|capitalize}}</td>
-					<td>
-						<a class="btn btn-primary" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
-						<a class="btn btn-primary" href="{{ path('app_user_show', {'id': user.id}) }}">Détail</a>
-					</td>
-				</tr>
+				{% if user.roles.0 == 'ROLE_USER' %}
+					<tr>
+						<td>{{ user.lastname }}</td>
+						<td>{{ user.firstname }}</td>
+						<td>{{ user.email }}</td>
+						<td>{{ user.phonenumber }}</td>
+						<td>
+							{{ user.secretariat.name|capitalize}}</td>
+						<td>
+							<a class="btn btn-primary" href="{{ path('app_user_show', {'id': user.id}) }}">Détail</a>
+						</td>
+					</tr>
+				{% endif %}
 			{% else %}
 				<tr>
 					<td colspan="10">no records found</td>
@@ -39,5 +38,4 @@
 			{% endfor %}
 		</tbody>
 	</table>
-
 {% endblock %}

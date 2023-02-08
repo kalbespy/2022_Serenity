@@ -4,10 +4,8 @@
 
 {% block body %}
 	<h1 class="text-center m-3">Les documents</h1>
-	<div class="d-flex justify-content-center m-3">
-		<a class="btn btn-primary m-2" href="{{ path('app_document_new') }}">Nouveau document</a>
-	</div>
-	<table class="table">
+
+	<table class="table mt-5">
 		<thead>
 			<tr>
 				<th>Titre</th>
@@ -23,7 +21,14 @@
 				<tr>
 					<td>{{ document.title }}</td>
 					<td class="text-center"><img class="rounded w-50" src="{{asset('build/images/' ~ document.picture)}}"></td>
-					<td class="text-center">{{ document.readTime }}'</td>
+					<td class="text-center">
+						{% if document.readTime == 0 %}
+							Non concerné.e
+						{% else %}
+							{{ document.readTime }}
+							min
+						{% endif %}
+					</td>
 					<td class="flex-column">
 						{% for secretariat in document.secretariats %}
 							<p>

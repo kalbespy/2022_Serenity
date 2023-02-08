@@ -5,15 +5,19 @@
 
 {% block body %}
 	<body class="connexionPageBody">
-        <div class="d-flex align-items-end">
-            <img class="doctor-image" src="{{asset('build/images/reassuringDoctor.png')}}" alt="doctor">
-            <img class="logo-image" src="{{asset('build/images/logo-title.svg')}}" alt="logo">
-        </div>
-
-        <div class="connexionPageForm p-5 pt-2 pb-2">
-            <p class="fw-bold fs-4 text-white mt-4 mb-5 text-center">L'application qui vous accompagne tout au long de votre parcours d'hospitalisation.</p>
-            <a class="btn btn-light registrationBtn p-3 col-8 mx-5 mb-1" href="{{ path("app_login") }}" role="button">Se connecter</a>
+		<div class="d-flex align-items-end bg-desktop">
+			<img class="doctor-image" src="{{asset('build/images/reassuringDoctor.png')}}" alt="doctor">
+			<img class="doctor-desktop" src="{{asset('build/images/reassuringResponsiveDoctor.png')}}" alt="doctor">
+			<div class="desktopHomeDivLogoText m-auto text-center">
+				<img class="logo-image mb-4" src="{{asset('build/images/logo-title.svg')}}" alt="logo">
+				<p class="fw-bold fst-italic fs-2 m-auto mt-5 pt-4 text-center col-7">L'application qui vous accompagne tout au long de votre parcours d'hospitalisation.</p>
+			</div>
+			<img class="logo-image logo-image-mobile " src="{{asset('build/images/logo-title.svg')}}" alt="logo">
 		</div>
 
+		<div class="connexionPageForm p-5 pt-2 pb-2">
+			<p class="fw-bold fs-4 text-white mt-4 mb-5 text-center descriptionHomeText">L'application qui vous accompagne tout au long de votre parcours d'hospitalisation.</p>
+			<a class="btn btn-light registrationBtn p-3 col-8 mx-5 mb-1 col-md-3" href="{{ path("app_login") }}" role="button">Se connecter</a>
+		</div>
 	</body>
 {% endblock %}

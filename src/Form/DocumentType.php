@@ -26,7 +26,6 @@ class DocumentType extends AbstractType
                 'required' => true,
                 'label' => 'Document :',
             ])
-            ->add('picture')
             ->add('readTime', IntegerType::class, [
                 'attr' => [
                     'placeholder' => 10,

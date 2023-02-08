@@ -42,13 +42,13 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             'secretariat' => 'secretariat_maternité',
         ],
         [
-            'firstname' => 'Thomas',
-            'lastname' => 'Aldaitz',
+            'firstname' => 'Admin',
+            'lastname' => 'Admin',
             'phonenumber' => '0637489135',
             'email' => 'admin@chu-bordeaux.com',
             'role' => ['ROLE_ADMIN'],
             'password' => 'adminCHU1234+',
-            'picture' => 'thomas-aldaitz.jpg',
+            'picture' => '',
             'secretariat' => 'secretariat_neurologie',
         ],
         [

@@ -38,8 +38,7 @@ class MedicalCourseType extends AbstractType
                 ],
                 'required' => true,
                 'label' => 'Nom de l\'étape :',
-            ])
-            ->add('picture');
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

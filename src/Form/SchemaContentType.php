@@ -13,7 +13,6 @@ class SchemaContentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('picture')
             ->add('title', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Ex : Système digestif',

@@ -24,30 +24,6 @@ class SchemaContentController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_schema_content_new', methods: ['GET', 'POST'])]
-    public function new(
-        Request $request,
-        SchemaContentRepository $schemaContentRepo,
-        CategoryRepository $categoryRepository
-    ): Response {
-        $schemaContent = new SchemaContent();
-        $schemaContent->setCategory($categoryRepository->findOneBy(['title' => 'Comprendre mon opération']));
-
-        $form = $this->createForm(SchemaContentType::class, $schemaContent);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $schemaContentRepo->save($schemaContent, true);
-
-            return $this->redirectToRoute('app_schema_content_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('schema_content/new.html.twig', [
-            'schema_content' => $schemaContent,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{id}', name: 'app_schema_content_show', methods: ['GET'])]
     public function show(SchemaContent $schemaContent): Response
     {
@@ -75,18 +51,5 @@ class SchemaContentController extends AbstractController
             'schema_content' => $schemaContent,
             'form' => $form,
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_schema_content_delete', methods: ['POST'])]
-    public function delete(
-        Request $request,
-        SchemaContent $schemaContent,
-        SchemaContentRepository $schemaContentRepo
-    ): Response {
-        if ($this->isCsrfTokenValid('delete' . $schemaContent->getId(), $request->request->get('_token'))) {
-            $schemaContentRepo->remove($schemaContent, true);
-        }
-
-        return $this->redirectToRoute('app_schema_content_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -24,30 +24,6 @@ class DocumentController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_document_new', methods: ['GET', 'POST'])]
-    public function new(
-        Request $request,
-        DocumentRepository $documentRepository,
-        CategoryRepository $categoryRepository
-    ): Response {
-        $document = new Document();
-        $document->setCategory($categoryRepository
-            ->findOneBy(['title' => 'Finir les démarches administratives']));
-        $form = $this->createForm(DocumentType::class, $document);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $documentRepository->save($document, true);
-
-            return $this->redirectToRoute('app_document_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('document/new.html.twig', [
-            'document' => $document,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{id}', name: 'app_document_show', methods: ['GET'])]
     public function show(Document $document): Response
     {
@@ -72,15 +48,5 @@ class DocumentController extends AbstractController
             'document' => $document,
             'form' => $form,
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_document_delete', methods: ['POST'])]
-    public function delete(Request $request, Document $document, DocumentRepository $documentRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $document->getId(), $request->request->get('_token'))) {
-            $documentRepository->remove($document, true);
-        }
-
-        return $this->redirectToRoute('app_document_index', [], Response::HTTP_SEE_OTHER);
     }
 }

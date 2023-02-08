@@ -4,11 +4,11 @@ namespace App\Form;
 
 use App\Entity\Video;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class VideoType extends AbstractType
 {
@@ -43,9 +43,9 @@ class VideoType extends AbstractType
                 3. Coller l'URL dans le champ ci-dessous'.",
                 'help_html' => true
             ])
-            ->add('duration', NumberType::class, [
+            ->add('duration', IntegerType::class, [
                 'attr' => [
-                    'placeholder' => 10.30,
+                    'placeholder' => 10,
                     'min' => 0,
                     'max' => 60,
                     'class' => 'crud-input',
@@ -53,7 +53,6 @@ class VideoType extends AbstractType
                 'label_attr' => [
                     'class' => 'crud-label',
                 ],
-                'scale' => 2,
                 'required' => true,
                 'label' => 'Durée de la vidéo (en minutes) :',
             ]);

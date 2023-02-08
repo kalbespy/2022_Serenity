@@ -13,8 +13,8 @@
 			</section>
 
 			{% if error %}
-				<section class="px-5">
-					<div class="connexionFormErrors text-center alert alert-danger p-2 ps-3">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				<section class="px-5 d-flex justify-content-center">
+					<div class="connexionFormErrors text-center alert alert-danger p-2 ps-3 col-lg-4">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 				</section>
 
 			{% endif %}

@@ -23,7 +23,7 @@ class MedicalDisciplineType extends AbstractType
                     'class' => 'crud-label',
                 ],
                 'required' => true,
-                'label' => 'Ajouter un profesionnel de santé :',
+                'label' => 'Modifier un profesionnel de santé :',
             ]);
     }
 

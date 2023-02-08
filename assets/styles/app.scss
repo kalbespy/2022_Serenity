@@ -34,6 +34,7 @@ $value-max5 : valueMax5;
 html,
 body {
     font-family: 'Work Sans', sans-serif;
+    color: #004F8B;
     background: linear-gradient(360deg, #FEFEFF 0%, #FFFFFF 100%);
 }
 
@@ -43,6 +44,7 @@ body {
 
 .bodyadmin {
     margin-bottom: 0;
+    color: black;
 }
 
 .navbar {
@@ -71,19 +73,18 @@ body {
 
 .profil-dash {
     height: 110px;
+    line-height: initial;
 }
 
 .undefined-patient {
-    width: 110px;
-    height: 110px;
+    max-width: 100px;
+    max-height: 100px;
     background: url(/assets/images/bras-cassé.jpg) center/cover;
-    border-radius: 25%;
 }
 
 .picture-patient {
-    width: 120px;
-    height: 120px;
-    padding: 0;
+    max-width: 100px;
+    max-height: 100px;
     border-radius: 25%;
 }
 
@@ -92,46 +93,6 @@ body {
     height: 100%;
     object-fit: cover;
     border-radius: 25%;
-}
-
-div.modal-footer>form {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-
-}
-
-#profile_picture {
-    width: 100%;
-
-}
-
-div#profile-picture>fieldset>div.vich-file {
-    display: flex;
-    justify-content: center;
-
-}
-
-div.vich-file>div.mb-3 {
-    display: flex;
-    justify-content: center;
-}
-
-div.vich-file>div.mb-3>div.form-check {
-    display: flex;
-    justify-content: center;
-    width: 60%;
-}
-
-#profile_picture_profilePicture_delete {
-    margin-right: 1em;
-}
-
-
-.upload-form-picture {
-    margin-bottom: 2em;
 }
 
 .progress-title {
@@ -280,7 +241,7 @@ h5.card-title {
 /* Checked button in _componentCategories */
 
 .bi-circle {
-    color: black;
+    color: #4C5980;
     font-size: 1.5rem;
 }
 
@@ -305,7 +266,7 @@ h5.card-title {
 
 .absolue-circle {
     position: absolute;
-    color: black;
+    color: #4C5980;
     font-size: 1.5rem;
     margin-left: 7px;
     margin-top: 2.1px;
@@ -350,31 +311,6 @@ h5.card-title {
     height: 66vh;
     width: 100%;
     border-radius: 0px 0px 0px 40px;
-}
-
-@media screen and (min-width: 768px) {
-    .reassuringDoctor {
-        height: 100%;
-        width: auto;
-        background: none;
-    }
-
-    .background-home {
-        height: 66vh;
-        width: 100%;
-        border-radius: 0px 0px 0px 40px;
-        background: url(/assets/images/desktop-doctor.jpg) center/contain no-repeat;
-    }
-
-    .title-serenity {
-        background-color: white;
-        width: auto;
-    }
-
-    .connexionPageForm {
-        display: flex;
-        justify-content: center;
-    }
 }
 
 .carrousel-picture {
@@ -466,7 +402,7 @@ h5.card-title {
 
 .is-not-checked-checklist {
     text-decoration: initial;
-    color: black;
+    color: #004F8B;
 }
 
 /* End _componentCategory5 */
@@ -629,8 +565,94 @@ h5.card-title {
 
 .nav-pills {
     --bs-nav-pills-link-active-bg: #7265E3;
+    color: #004F8B;
+}
+
+#show-more-schemas {
+    color: #004F8B;
+}
+
+.step {
+    font-weight: bold;
 }
 
 .logo-image-admin {
     width: 400px;
+}
+
+.doctor-desktop {
+    display: none;
+}
+
+.descriptionHomeTextResponsive {
+    display: none;
+}
+
+.desktopHomeDivLogoText {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+
+    .doctor-image {
+        display: none;
+    }
+
+    .doctor-desktop {
+        display: initial;
+        height: 75vh;
+        width: auto;
+        border-radius: 0px 0px 0px 40px;
+    }
+
+    .logo-image {
+        position: relative;
+        width: 700px;
+        margin: auto;
+    }
+
+    .desktopHomeDivLogoText {
+        display: initial;
+        color: #004F8B;
+    }
+
+    .logo-image-mobile {
+        display: none;
+    }
+
+    .descriptionHomeText {
+        display: none;
+    }
+
+    .descriptionHomeTextResponsive {
+        display: initial;
+    }
+
+    .descriptionHomeTextMobile {
+        display: none;
+    }
+
+    .bg-desktop {
+        height: 75vh;
+        border-radius: 0px 0px 0px 40px;
+        background-color: white;
+    }
+
+    .title-serenity {
+        background-color: white;
+        width: auto;
+    }
+
+    .connexionPageForm {
+        display: flex;
+        justify-content: center;
+    }
+
+    .registrationBtn {
+        padding-top: 50px;
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 100px;
+        height: 55px;
+    }
 }
