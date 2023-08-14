@@ -8,7 +8,7 @@
 			<div class="card schema-card col-6 g-3">
 				<div class="background-check"></div>
 				<a class="checkAbsoluteButton" href="{{ path("app_document_check" , { id: userDocument.document.id }) }}">
-					<i class="bi absolue-check {{ userDocument.isChecked ? ' absolue-check-circle  bi-check-circle' : ' absolue-circle  bi-circle'}}"></i>
+					<i class="bi {{ userDocument.isChecked ? ' absolute-check-circle  bi-check-circle' : ' absolute-circle  bi-circle'}}"></i>
 					<img class="card-img-top documentPicture" src="{{asset('build/images/' ~ userDocument.document.picture)}}" alt="Card image cap">
 				</a>
 				<div class="card-body">

@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CategoryService extends AbstractController
 {
     private UserDocumentRepository $userDocRepo;
-    private userRepository $userRepository;
+    private UserRepository $userRepository;
     private UserChecklistRepository $userCheckRepo;
     private UserMedDisciplineRepository $userMedDRepo;
     private UserMedicalCourseRepository $userMedCRepo;
@@ -27,7 +27,7 @@ class CategoryService extends AbstractController
 
     public function __construct(
         UserDocumentRepository $userDocRepo,
-        userRepository $userRepository,
+        UserRepository $userRepository,
         UserChecklistRepository $userCheckRepo,
         UserMedDisciplineRepository $userMedDRepo,
         UserMedicalCourseRepository $userMedCRepo,
@@ -48,8 +48,6 @@ class CategoryService extends AbstractController
     public function elementChecked(User $user): array
     {
         $elementsChecked = [];
-        $elementsChecked['categories'] =
-            $this->userRepository->findAll();
         $elementsChecked['documentChecked'] =
             $this->userDocRepo->findBy(['user' => $user, 'isChecked' => true]);
         $elementsChecked['CheckListChecked'] =
@@ -86,13 +84,13 @@ class CategoryService extends AbstractController
         return $totalElementsByUser;
     }
 
-    public function changeProfilePicture(Request $request, User $user, UserRepository $userRepository): Response
+    public function changeProfilePicture(Request $request, User $user): Response
     {
         $form = $this->createForm(ProfilePictureType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->save($user, true);
+            $this->userRepository->save($user, true);
         }
 
         return $this->renderForm('components/upload_profile_picture.html.twig', [

@@ -1,7 +1,26 @@
 {% extends 'baseCategory.html.twig' %}
-{% set total = (app.user.userDocuments|length) + (app.user.userChecklists|length) + (app.user.userMedicalCourses|length) + (app.user.userSchemaContents|length) + (app.user.userVideos|length) + (app.user.userMedDisciplines|length) %}
-{% set totalchecked = document|length + checklist|length + medicalD|length + medicalC|length + schema|length + video|length %}
-{% set percent = ((totalchecked / total)*100)|round(0) %}
+
+{% set total = 
+	(app.user.userDocuments|length) +
+	(app.user.userChecklists|length) + 
+	(app.user.userMedicalCourses|length) + 
+	(app.user.userSchemaContents|length) + 
+	(app.user.userVideos|length) + 
+	(app.user.userMedDisciplines|length) 
+%}
+{% set totalchecked = 
+	document|length + 
+	checklist|length + 
+	medicalD|length + 
+	medicalC|length + 
+	schema|length + 
+	video|length 
+%}
+
+{% set percent = 
+	((totalchecked / total)*100)|round(0) 
+%}
+
 {% block title %}Dashboard
 {% endblock %}
 

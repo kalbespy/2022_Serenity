@@ -17,14 +17,14 @@ function checkAbsoluteItem(e) {
             .then(data => {
                 const checkIcon = checkLink.firstElementChild;
                 if (data.isChecked) {
-                    checkIcon.classList.remove("absolue-circle");
+                    checkIcon.classList.remove("absolute-circle");
                     checkIcon.classList.remove("bi-circle");
-                    checkIcon.classList.add("absolue-check-circle");
+                    checkIcon.classList.add("absolute-check-circle");
                     checkIcon.classList.add("bi-check-circle");
                 } else {
-                    checkIcon.classList.remove("absolue-check-circle");
+                    checkIcon.classList.remove("absolute-check-circle");
                     checkIcon.classList.remove("bi-check-circle");
-                    checkIcon.classList.add("absolue-circle");
+                    checkIcon.classList.add("absolute-circle");
                     checkIcon.classList.add("bi-circle");
                 }
                 dynamicProgressBar();
@@ -57,9 +57,9 @@ function checkAbsoluteItemFromModal(e) {
                 let checkIconDiv = document.getElementsByClassName(checkLinkId)[0];
                 let checkIcon = checkIconDiv.firstElementChild;
                 if (data.isChecked) {
-                    checkIcon.classList.remove("absolue-circle");
+                    checkIcon.classList.remove("absolute-circle");
                     checkIcon.classList.remove("bi-circle");
-                    checkIcon.classList.add("absolue-check-circle");
+                    checkIcon.classList.add("absolute-check-circle");
                     checkIcon.classList.add("bi-check-circle");
                 }
                 dynamicProgressBar();
