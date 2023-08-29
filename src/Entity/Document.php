@@ -18,7 +18,7 @@ class Document
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
     #[ORM\Column]
@@ -28,13 +28,13 @@ class Document
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'documents')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Category $category = null;
 
     #[ORM\ManyToMany(targetEntity: Secretariat::class, mappedBy: 'document')]
     private Collection $secretariats;
 
-    #[ORM\OneToMany(mappedBy: 'document', targetEntity: UserDocument::class)]
+    #[ORM\OneToMany(mappedBy: 'document', targetEntity: UserDocument::class, orphanRemoval: true)]
     private Collection $userDocuments;
 
     public function __construct()

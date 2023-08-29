@@ -112,7 +112,6 @@ class CategoryController extends AbstractController
             'userVideos' => $userVideos,
             'userMedicalCourses' => $userMedicalCourses,
             'userMedicalDisciplines' => $userMedDisciplines,
-            'categories' => $elementsChecked['categories'],
             'document' => $elementsChecked['documentChecked'],
             'checklist' => $elementsChecked['CheckListChecked'],
             'medicalD' => $elementsChecked['medDChecked'],
